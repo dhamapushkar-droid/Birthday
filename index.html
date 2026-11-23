@@ -460,11 +460,48 @@ footer { border-top: 1px solid var(--line); padding: 24px 0; color: #8d838b; fon
 .footer-links a:hover { color: #cc738a; }
 .footer-brand { font: 700 17px 'Playfair Display', serif; color: var(--ink); }
 
+/* ---------- Blog ---------- */
+.blog-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; padding-bottom: 80px; }
+.blog-card {
+  border: 1px solid #f0e9e7;
+  border-radius: 20px;
+  overflow: hidden;
+  background: #fff;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+  padding: 0;
+  transition: transform .22s, box-shadow .22s;
+}
+.blog-card:hover { transform: translateY(-4px); box-shadow: var(--shadow); }
+.blog-img { height: 210px; position: relative; overflow: hidden; background: #faf4f3; }
+.blog-img img { width: 100%; height: 100%; object-fit: cover; transition: transform .5s; }
+.blog-card:hover .blog-img img { transform: scale(1.05); }
+.blog-body { padding: 18px 18px 20px; display: flex; flex-direction: column; flex: 1; }
+.blog-meta { font-size: 11px; color: var(--muted); font-weight: 600; margin-bottom: 9px; }
+.blog-card h3 { font: 700 20px/1.3 'Playfair Display', serif; margin: 0 0 9px; color: var(--ink); }
+.blog-card p { font-size: 13px; line-height: 1.7; color: #746872; margin: 0 0 14px; }
+.blog-card .read-more { margin-top: auto; color: #c8738b; font-weight: 700; font-size: 13px; }
+.post { max-width: 760px; margin: 0 auto; padding: 40px 0 80px; }
+.post .back { margin-bottom: 22px; }
+.post h1 { font: 800 clamp(30px, 5vw, 44px)/1.15 'Playfair Display', serif; letter-spacing: -1px; margin: 12px 0 14px; }
+.post-cover { width: 100%; height: 360px; object-fit: cover; border-radius: 24px; margin: 22px 0 28px; }
+.post-body { font-size: 16px; line-height: 1.9; color: #4d4350; }
+.post-body h2 { font: 700 26px 'Playfair Display', serif; color: var(--ink); margin: 34px 0 10px; }
+.post-body p { margin: 0 0 16px; }
+.post-body ul { padding-left: 20px; margin: 0 0 16px; }
+.post-body li { margin-bottom: 8px; }
+.post-cta { margin-top: 34px; padding: 26px; border-radius: 22px; background: #f1f8f3; text-align: center; }
+.post-cta h3 { font: 700 22px 'Playfair Display', serif; margin: 0 0 8px; }
+.post-cta p { color: var(--muted); margin: 0 0 16px; }
+
 @media (max-width: 900px) {
   .categories { grid-template-columns: repeat(2, 1fr); }
   .products-grid { grid-template-columns: repeat(2, 1fr); }
   .why { grid-template-columns: repeat(2, 1fr); }
   .cart-layout { grid-template-columns: 1fr 290px; }
+  .blog-grid { grid-template-columns: repeat(2, 1fr); }
 }
 @media (max-width: 640px) {
   .topbar { height: 68px; }
@@ -537,6 +574,11 @@ footer { border-top: 1px solid var(--line); padding: 24px 0; color: #8d838b; fon
   .book-tab { padding: 15px 9px; font-size: 12px; }
   .booking-panel { padding: 23px; }
   .hero-card:after { top: 8%; right: 9%; }
+  .blog-grid { grid-template-columns: 1fr; gap: 16px; }
+  .blog-img { height: 180px; }
+  .post { padding: 24px 0 60px; }
+  .post-cover { height: 220px; border-radius: 18px; }
+  .post-body { font-size: 15px; }
 }
 </style>
 </head>
@@ -551,6 +593,7 @@ footer { border-top: 1px solid var(--line); padding: 24px 0; color: #8d838b; fon
     <div class="navlinks" id="navlinks">
       <a href="#home" data-page="home" class="active">Home</a>
       <a href="#products" data-page="products">Products</a>
+      <a href="#blog" data-page="blog">Blog</a>
       <a href="#cart" data-page="cart" class="cart-link">Cart <span class="badge" id="cartCount">0</span></a>
     </div>
   </nav>
@@ -649,6 +692,20 @@ footer { border-top: 1px solid var(--line); padding: 24px 0; color: #8d838b; fon
     </div>
   </section>
 
+  <section class="page" id="blog">
+    <div class="container">
+      <div id="blogList">
+        <div class="page-heading">
+          <div class="eyebrow">The celebration journal</div>
+          <h1>Ideas &amp; inspiration</h1>
+          <p>Party decor tips, gifting ideas and little details for your happiest days.</p>
+        </div>
+        <div class="blog-grid" id="blogGrid"></div>
+      </div>
+      <article class="post" id="blogPost" style="display:none"></article>
+    </div>
+  </section>
+
   <section class="page" id="about">
     <div class="container">
       <div class="page-heading">
@@ -721,6 +778,7 @@ footer { border-top: 1px solid var(--line); padding: 24px 0; color: #8d838b; fon
   <div class="container footer-inner">
     <div class="footer-brand">confetti &amp; co. 🎈</div>
     <nav class="footer-links" aria-label="Footer">
+      <a href="#blog" data-page="blog">Blog</a>
       <a href="#about" data-page="about">About</a>
       <a href="#contact" data-page="contact">Contact</a>
       <a href="mailto:pushkardhama1112@gmail.com">pushkardhama1112@gmail.com</a>
@@ -927,6 +985,7 @@ function navigate(id) {
   window.scrollTo({top: 0, behavior: 'smooth'});
   history.replaceState(null, '', '#' + id);
   if (id === 'cart') renderCart();
+  if (id === 'blog') closePost();
 }
 
 document.querySelectorAll('.navlinks a, .footer-links a[data-page]').forEach(link => {
@@ -1008,11 +1067,86 @@ function showToast(message) {
   window.toastTimer = setTimeout(() => toast.classList.remove('show'), 2500);
 }
 
+/* ---------- Blog ----------
+   Naya blog jodne ke liye neeche 'blogs' array mein ek aur object add karo.
+   Sabse upar wala blog sabse pehle dikhta hai. */
+const blogs = [
+  {
+    id: 'pastel-birthday-decor-ideas',
+    title: '5 Pastel Birthday Decoration Ideas You Can Set Up at Home',
+    date: '23 Nov 2026',
+    category: 'Decor ideas',
+    readTime: '4 min read',
+    image: 'photo-1530103862676-de8c9debad1d',
+    excerpt: 'Simple, pretty ways to turn your living room into a dreamy party space without any stress.',
+    content: `
+      <p>You do not need a big budget to make a birthday feel special. A few thoughtful details, put together with care, can change the whole look of a room.</p>
+      <h2>1. Start with a balloon backdrop</h2>
+      <p>A balloon arch or garland behind the cake table gives you an instant photo corner. Stick to two or three soft colours so it looks neat and matching.</p>
+      <h2>2. Style the cake table</h2>
+      <p>Keep the table simple: a table cover, cake, a few cupcakes and a small welcome board. Leave some space so the cake stays the star.</p>
+      <h2>3. Add a touch of gold</h2>
+      <p>Golden confetti, a topper or a few foil balloons add sparkle without making the decor look heavy.</p>
+      <h2>4. Think about the little guests</h2>
+      <ul>
+        <li>Set out matching plates and cups</li>
+        <li>Prepare small party favours for return gifts</li>
+        <li>Keep a corner free for games</li>
+      </ul>
+      <h2>5. Plan ahead</h2>
+      <p>Set up the backdrop and table the day before if you can. On the party day you will have time to enjoy the celebration too.</p>
+      <div class="post-cta">
+        <h3>Want help planning your celebration?</h3>
+        <p>Tell us your theme and we will help you pick the right decor and gifts.</p>
+        <button class="btn" onclick="openBooking()">Book Now&nbsp; →</button>
+      </div>`
+  }
+];
+
+function blogCard(b) {
+  return `
+    <button class="blog-card" onclick="openPost('${b.id}')">
+      <div class="blog-img"><img loading="lazy" src="${imgSrc(b.image)}" alt="${b.title}"></div>
+      <div class="blog-body">
+        <div class="blog-meta">${b.category} · ${b.date} · ${b.readTime}</div>
+        <h3>${b.title}</h3>
+        <p>${b.excerpt}</p>
+        <span class="read-more">Read more →</span>
+      </div>
+    </button>`;
+}
+
+function renderBlogs() {
+  document.getElementById('blogGrid').innerHTML = blogs.map(blogCard).join('');
+}
+
+function openPost(id) {
+  const b = blogs.find(item => item.id === id);
+  if (!b) return;
+  document.getElementById('blogPost').innerHTML = `
+    <button class="text-link back" onclick="closePost()">← Back to all posts</button>
+    <div class="eyebrow">${b.category} · ${b.date} · ${b.readTime}</div>
+    <h1>${b.title}</h1>
+    <img class="post-cover" src="${imgSrc(b.image).replace('w=700','w=1400')}" alt="${b.title}">
+    <div class="post-body">${b.content}</div>`;
+  document.getElementById('blogList').style.display = 'none';
+  document.getElementById('blogPost').style.display = 'block';
+  document.title = b.title + ' | Confetti & Co.';
+  window.scrollTo({top: 0, behavior: 'smooth'});
+}
+
+function closePost() {
+  document.getElementById('blogPost').style.display = 'none';
+  document.getElementById('blogList').style.display = 'block';
+  window.scrollTo({top: 0, behavior: 'smooth'});
+}
+
 renderProducts();
+renderBlogs();
 renderCart();
 updateCount();
 
-if (location.hash && ['home', 'products', 'cart', 'about', 'contact'].includes(location.hash.slice(1))) {
+if (location.hash && ['home', 'products', 'blog', 'cart', 'about', 'contact'].includes(location.hash.slice(1))) {
   navigate(location.hash.slice(1));
 }
 </script>
