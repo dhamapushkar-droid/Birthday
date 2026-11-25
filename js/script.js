@@ -1,255 +1,320 @@
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="theme-color" content="#fffaf7">
-<title>Birthday Decoration Items Online | Personalised Party Supplies India</title>
-<meta name="description" content= "Birthday decoration items online: personalised backdrops, welcome boards, cutouts, cake toppers, return gifts and theme kits. Free delivery above Rs. 899.">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@600;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/style.css"> 
-   </head>
-<body>
-<header class="topbar">
-  <nav class="nav">
-    <div class="brand" onclick="navigate('home')">
-      <div class="brand-mark">🎈</div>
-      <div class="brand-name">confetti <span>&amp;</span> co.</div>
-    </div>
-    <button class="menu-btn" id="menuBtn" aria-label="Toggle menu">☰</button>
-    <div class="navlinks" id="navlinks">
-      <a href="#home" data-page="home" class="active">Home</a>
-      <a href="#products" data-page="products">Products</a>
-      <a href="#blog" data-page="blog">Blog</a>
-      <a href="#cart" data-page="cart" class="cart-link">Cart <span class="badge" id="cartCount">0</span></a>
-    </div>
-  </nav>
-</header>
+const products = [
+  {id:'p1',name:'Blush Balloon Arch Kit',price:1499,category:'decorations',tag:'Bestseller',desc:'A dreamy pastel party backdrop',image:'photo-1530103862676-de8c9debad1d'},
+  {id:'p2',name:'Pastel Birthday Table Set',price:899,category:'decorations',tag:'Party favourite',desc:'Plates, cups & all the pretty bits',image:'photo-1464366400600-7168b8af9bc3'},
+  {id:'p3',name:'Enchanted Garden Decor',price:2299,category:'decorations',tag:'New',desc:'A little garden party magic',image:'photo-1492684223066-81342ee5ff30'},
+  {id:'p4',name:'Golden Confetti Pack',price:299,category:'decorations',tag:'Little treat',desc:'The finishing sparkle for your day',image:'photo-1513151233558-d860c5398176'},
+  {id:'p5',name:'The Birthday Bliss Hamper',price:1899,category:'gift-hampers',tag:'Bestseller',desc:'Sweet treats, candles & happy things',image:'photo-1549465220-1a8b9238cd48'},
+  {id:'p6',name:'Little Sunshine Gift Box',price:1299,category:'gift-hampers',tag:'Thoughtful gift',desc:'A bright box for someone lovely',image:'photo-1513475382585-d06e58bcb0e0'},
+  {id:'p7',name:'Mini Party Favour Set',price:699,category:'gift-hampers',tag:'For your guests',desc:'A sweet thank-you for little guests',image:'photo-1531058020387-3be344556be6'},
+  {id:'p8',name:'Celebration Treat Hamper',price:2499,category:'gift-hampers',tag:'Premium pick',desc:'A generous bundle of birthday joy',image:'photo-1607344645866-009c320b63e0'}
+];
 
-<main>
-  <section class="page active" id="home">
-    <div class="container">
-      <div class="hero">
-        <div class="hero-card">
-          <div class="hero-copy">
-            <div class="eyebrow">Little details, big celebrations</div>
-            <h1>Make Every celebration special</h1>
-            <p>Thoughtful party decor and delightful gift hampers to make your happiest moments unforgettable.</p>
-            <button class="btn" onclick="navigate('products')">Shop Now&nbsp; →</button>
-          </div>
+let cart = JSON.parse(localStorage.getItem('confetti-cart') || '{}');
+let currentFilter = 'all';
+
+function money(n) {
+  return '₹' + Number(n).toLocaleString('en-IN');
+}
+
+function imgSrc(id) {
+  return `https://images.unsplash.com/${id}?auto=format&fit=crop&w=700&q=80`;
+}
+
+function productCard(p) {
+  return `
+    <article class="product">
+      <div class="product-img">
+        <img loading="lazy" src="${imgSrc(p.image)}" alt="${p.name}">
+        <span class="tag">${p.tag}</span>
+      </div>
+      <div class="product-info">
+        <h3>${p.name}</h3>
+        <p class="product-desc">${p.desc}</p>
+        <div class="product-bottom">
+          <span class="price">${money(p.price)}</span>
+          <button class="add-btn" onclick="addToCart('${p.id}')">＋ Add to cart</button>
         </div>
       </div>
+    </article>`;
+}
 
-      <div class="section-head">
+function renderProducts() {
+  document.getElementById('featuredGrid').innerHTML =
+    products.slice(0, 4).map(productCard).join('');
+
+  const filtered = currentFilter === 'all'
+    ? products
+    : products.filter(p => p.category === currentFilter);
+
+  document.getElementById('productsGrid').innerHTML =
+    filtered.map(productCard).join('');
+
+  document.querySelectorAll('.filter').forEach(button => {
+    button.classList.toggle('active', button.dataset.filter === currentFilter);
+  });
+
+  const options = products.map(product =>
+    `<option value="${product.name}">${product.name}</option>`
+  ).join('');
+
+  document.getElementById('bookItem').innerHTML =
+    '<option value="">Choose an item or category</option>' +
+    '<optgroup label="Products">' + options + '</optgroup>' +
+    '<optgroup label="Categories">' +
+      '<option>Balloon Decoration</option>' +
+      '<option>Theme Decoration</option>' +
+      '<option>Birthday Gift Hamper</option>' +
+      '<option>Return Gifts</option>' +
+    '</optgroup>';
+}
+
+function saveCart() {
+  localStorage.setItem('confetti-cart', JSON.stringify(cart));
+  renderCart();
+  updateCount();
+}
+
+function addToCart(id) {
+  cart[id] = (cart[id] || 0) + 1;
+  saveCart();
+  showToast('Added to your cart ✨');
+}
+
+function updateCount() {
+  const count = Object.values(cart).reduce((total, quantity) => total + quantity, 0);
+  document.getElementById('cartCount').textContent = count;
+}
+
+function renderCart() {
+  const entries = Object.entries(cart).filter(([, quantity]) => quantity > 0);
+  const list = document.getElementById('cartList');
+  const summary = document.getElementById('cartSummary');
+
+  if (!entries.length) {
+    list.innerHTML = `
+      <div class="empty">
+        <div class="empty-icon">🛍️</div>
+        <h3>Your cart is waiting for a little joy</h3>
+        <p>Find something lovely for your next celebration.</p>
+        <button class="btn" onclick="navigate('products')">Explore Products&nbsp; →</button>
+      </div>`;
+    summary.style.display = 'none';
+    return;
+  }
+
+  summary.style.display = 'block';
+  let total = 0;
+
+  list.innerHTML = entries.map(([id, quantity]) => {
+    const product = products.find(item => item.id === id);
+    if (!product) return '';
+
+    total += product.price * quantity;
+    return `
+      <article class="cart-row">
+        <img src="${imgSrc(product.image)}" alt="${product.name}">
         <div>
-          <h2>Find your party mood</h2>
-          <p>Everything you need to celebrate beautifully.</p>
+          <h3>${product.name}</h3>
+          <small>${money(product.price)} each</small>
+          <div class="quantity">
+            <button aria-label="Decrease quantity" onclick="changeQty('${id}', -1)">−</button>
+            <strong>${quantity}</strong>
+            <button aria-label="Increase quantity" onclick="changeQty('${id}', 1)">+</button>
+          </div>
+          <button class="remove" onclick="removeItem('${id}')">Remove</button>
         </div>
-      </div>
-      <div class="categories">
-        <button class="category" onclick="filterAndGo('decorations')">
-          <span class="cat-icon" style="background:#fde7eb">🎈</span>
-          <span><strong>Balloon Decorations</strong><small>Make a little magic</small></span>
-        </button>
-        <button class="category" onclick="filterAndGo('decorations')">
-          <span class="cat-icon" style="background:#e9f4ec">🎊</span>
-          <span><strong>Theme Decor</strong><small>Set the scene</small></span>
-        </button>
-        <button class="category" onclick="filterAndGo('gift-hampers')">
-          <span class="cat-icon" style="background:#fff1d5">🎁</span>
-          <span><strong>Birthday Gift Hampers</strong><small>Gifts with extra joy</small></span>
-        </button>
-        <button class="category" onclick="filterAndGo('gift-hampers')">
-          <span class="cat-icon" style="background:#eee8f7">🧁</span>
-          <span><strong>Return Gifts</strong><small>Sweet little thank-yous</small></span>
-        </button>
-      </div>
+        <strong>${money(product.price * quantity)}</strong>
+      </article>`;
+  }).join('');
 
-      <div class="section-head">
-        <div>
-          <h2>Party favourites</h2>
-          <p>Handpicked for your next unforgettable moment.</p>
-        </div>
-        <button class="text-link" onclick="navigate('products')">See all products →</button>
-      </div>
-      <div class="products-grid" id="featuredGrid"></div>
+  document.getElementById('subtotal').textContent = money(total);
+  document.getElementById('total').textContent = money(total);
+}
 
-      <div class="why">
-        <h2>Celebrations, made easy</h2>
-        <div class="why-item"><span>✨</span>Beautifully curated, always</div>
-        <div class="why-item"><span>💌</span>Personal touches you’ll love</div>
-        <div class="why-item"><span>🚚</span>Joy delivered to your door</div>
-      </div>
-    </div>
-  </section>
+function changeQty(id, delta) {
+  cart[id] = (cart[id] || 0) + delta;
+  if (cart[id] <= 0) delete cart[id];
+  saveCart();
+}
 
-  <section class="page" id="products">
-    <div class="container">
-      <div class="page-heading">
-        <div class="eyebrow">The celebration shop</div>
-        <h1>Find your happy</h1>
-        <p>Little touches that turn a day into a memory.</p>
-      </div>
-      <div class="filter-row">
-        <button class="filter active" data-filter="all">All</button>
-        <button class="filter" data-filter="decorations">Decorations</button>
-        <button class="filter" data-filter="gift-hampers">Gift Hampers</button>
-      </div>
-      <div class="products-grid products-page-grid" id="productsGrid"></div>
-    </div>
-  </section>
+function removeItem(id) {
+  delete cart[id];
+  saveCart();
+  showToast('Removed from your cart');
+}
 
-  <section class="page" id="cart">
-    <div class="container">
-      <div class="page-heading">
-        <div class="eyebrow">Your little celebration</div>
-        <h1>Your Cart</h1>
-        <p>All the lovely things you picked out.</p>
+function navigate(id) {
+  document.querySelectorAll('.page').forEach(page => {
+    page.classList.toggle('active', page.id === id);
+  });
+  document.querySelectorAll('.navlinks a').forEach(link => {
+    link.classList.toggle('active', link.dataset.page === id);
+  });
+  document.getElementById('navlinks').classList.remove('open');
+  window.scrollTo({top: 0, behavior: 'smooth'});
+  history.replaceState(null, '', '#' + id);
+  if (id === 'cart') renderCart();
+  if (id === 'blog') closePost();
+}
+
+document.querySelectorAll('.navlinks a, .footer-links a[data-page]').forEach(link => {
+  link.addEventListener('click', event => {
+    event.preventDefault();
+    navigate(link.dataset.page);
+  });
+});
+
+document.querySelectorAll('.filter').forEach(button => {
+  button.addEventListener('click', () => {
+    currentFilter = button.dataset.filter;
+    renderProducts();
+  });
+});
+
+function filterAndGo(filter) {
+  currentFilter = filter;
+  navigate('products');
+  renderProducts();
+}
+
+document.getElementById('menuBtn').addEventListener('click', () => {
+  document.getElementById('navlinks').classList.toggle('open');
+});
+
+function openBooking(item = '') {
+  document.getElementById('overlay').classList.add('open');
+  document.getElementById('bookingPanel').classList.add('open');
+  document.body.style.overflow = 'hidden';
+
+  if (item && !products.some(product => product.name === item)) {
+    document.getElementById('bookItem').value = '';
+  }
+}
+
+function closeBooking() {
+  document.getElementById('overlay').classList.remove('open');
+  document.getElementById('bookingPanel').classList.remove('open');
+  document.body.style.overflow = '';
+
+  setTimeout(() => {
+    document.getElementById('bookingForm').style.display = 'block';
+    document.getElementById('bookingSuccess').classList.remove('show');
+  }, 350);
+}
+
+document.addEventListener('keydown', event => {
+  if (event.key === 'Escape') closeBooking();
+});
+
+document.getElementById('bookingForm').addEventListener('submit', event => {
+  event.preventDefault();
+
+  const mobile = document.getElementById('bookMobile').value.trim();
+  const email = document.getElementById('bookEmail').value.trim();
+
+  if (!mobile && !email) {
+    showToast('Please add a mobile number or email');
+    return;
+  }
+
+  document.getElementById('bookingForm').style.display = 'none';
+  document.getElementById('bookingSuccess').classList.add('show');
+  setTimeout(closeBooking, 2600);
+});
+
+document.getElementById('contactForm').addEventListener('submit', event => {
+  event.preventDefault();
+  event.target.reset();
+  showToast('Thanks for your message! We’ll be in touch 💌');
+});
+
+function showToast(message) {
+  const toast = document.getElementById('toast');
+  toast.textContent = message;
+  toast.classList.add('show');
+  clearTimeout(window.toastTimer);
+  window.toastTimer = setTimeout(() => toast.classList.remove('show'), 2500);
+}
+
+/* ---------- Blog ----------
+   Naya blog jodne ke liye neeche 'blogs' array mein ek aur object add karo.
+   Sabse upar wala blog sabse pehle dikhta hai. */
+const blogs = [
+  {
+    id: 'pastel-birthday-decor-ideas',
+    title: '5 Pastel Birthday Decoration Ideas You Can Set Up at Home',
+    date: '23 Nov 2026',
+    category: 'Decor ideas',
+    readTime: '4 min read',
+    image: 'photo-1530103862676-de8c9debad1d',
+    excerpt: 'Simple, pretty ways to turn your living room into a dreamy party space without any stress.',
+    content: `
+      <p>You do not need a big budget to make a birthday feel special. A few thoughtful details, put together with care, can change the whole look of a room.</p>
+      <h2>1. Start with a balloon backdrop</h2>
+      <p>A balloon arch or garland behind the cake table gives you an instant photo corner. Stick to two or three soft colours so it looks neat and matching.</p>
+      <h2>2. Style the cake table</h2>
+      <p>Keep the table simple: a table cover, cake, a few cupcakes and a small welcome board. Leave some space so the cake stays the star.</p>
+      <h2>3. Add a touch of gold</h2>
+      <p>Golden confetti, a topper or a few foil balloons add sparkle without making the decor look heavy.</p>
+      <h2>4. Think about the little guests</h2>
+      <ul>
+        <li>Set out matching plates and cups</li>
+        <li>Prepare small party favours for return gifts</li>
+        <li>Keep a corner free for games</li>
+      </ul>
+      <h2>5. Plan ahead</h2>
+      <p>Set up the backdrop and table the day before if you can. On the party day you will have time to enjoy the celebration too.</p>
+      <div class="post-cta">
+        <h3>Want help planning your celebration?</h3>
+        <p>Tell us your theme and we will help you pick the right decor and gifts.</p>
+        <button class="btn" onclick="openBooking()">Book Now&nbsp; →</button>
+      </div>`
+  }
+];
+
+function blogCard(b) {
+  return `
+    <button class="blog-card" onclick="openPost('${b.id}')">
+      <div class="blog-img"><img loading="lazy" src="${imgSrc(b.image)}" alt="${b.title}"></div>
+      <div class="blog-body">
+        <div class="blog-meta">${b.category} · ${b.date} · ${b.readTime}</div>
+        <h3>${b.title}</h3>
+        <p>${b.excerpt}</p>
+        <span class="read-more">Read more →</span>
       </div>
-      <div class="cart-layout">
-        <div class="cart-list" id="cartList"></div>
-        <aside class="cart-summary" id="cartSummary">
-          <h3>Order summary</h3>
-          <div class="summary-line"><span>Subtotal</span><span id="subtotal">₹0</span></div>
-          <div class="summary-line"><span>Delivery</span><span style="color:#55936a">Free</span></div>
-          <div class="summary-line summary-total"><span>Total</span><span id="total">₹0</span></div>
-          <button class="btn" onclick="openBooking('Your celebration order')">Proceed / Book Now&nbsp; →</button>
-        </aside>
-      </div>
-    </div>
-  </section>
+    </button>`;
+}
 
-  <section class="page" id="blog">
-    <div class="container">
-      <div id="blogList">
-        <div class="page-heading">
-          <div class="eyebrow">The celebration journal</div>
-          <h1>Ideas &amp; inspiration</h1>
-          <p>Party decor tips, gifting ideas and little details for your happiest days.</p>
-        </div>
-        <div class="blog-grid" id="blogGrid"></div>
-      </div>
-      <article class="post" id="blogPost" style="display:none"></article>
-    </div>
-  </section>
+function renderBlogs() {
+  document.getElementById('blogGrid').innerHTML = blogs.map(blogCard).join('');
+}
 
-  <section class="page" id="about">
-    <div class="container">
-      <div class="page-heading">
-        <div class="eyebrow">A little about us</div>
-        <h1>Celebrations made special</h1>
-        <p>Confetti &amp; Co. brings thoughtful party decor and delightful gift hampers to your happiest moments.</p>
-      </div>
-      <div class="why">
-        <h2>Little details, big memories</h2>
-        <div class="why-item"><span>Party decor</span>Joyful decorations for every celebration</div>
-        <div class="why-item"><span>Gift hampers</span>Thoughtful gifts, beautifully chosen</div>
-        <div class="why-item"><span>Personal</span>Personal touches you will love</div>
-      </div>
-    </div>
-  </section>
+function openPost(id) {
+  const b = blogs.find(item => item.id === id);
+  if (!b) return;
+  document.getElementById('blogPost').innerHTML = `
+    <button class="text-link back" onclick="closePost()">← Back to all posts</button>
+    <div class="eyebrow">${b.category} · ${b.date} · ${b.readTime}</div>
+    <h1>${b.title}</h1>
+    <img class="post-cover" src="${imgSrc(b.image).replace('w=700','w=1400')}" alt="${b.title}">
+    <div class="post-body">${b.content}</div>`;
+  document.getElementById('blogList').style.display = 'none';
+  document.getElementById('blogPost').style.display = 'block';
+  document.title = b.title + ' | Confetti & Co.';
+  window.scrollTo({top: 0, behavior: 'smooth'});
+}
 
-  <section class="page" id="contact">
-    <div class="container">
-      <div class="page-heading">
-        <div class="eyebrow">We’re here for the happy stuff</div>
-        <h1>Let’s make it special</h1>
-        <p>Questions, custom ideas, or just want to say hello? We’d love to hear from you.</p>
-      </div>
-      <div class="contact-grid">
-        <div class="contact-cards">
-          <div class="contact-card">
-            <div class="contact-icon">📞</div>
-            <div><strong>Give us a ring</strong><span>+91 98765 43210</span></div>
-          </div>
-          <div class="contact-card">
-            <div class="contact-icon">✉️</div>
-            <div><strong>Drop us a note</strong><span>hello@confettiandco.in</span></div>
-          </div>
-          <div class="contact-card">
-            <div class="contact-icon">📍</div>
-            <div><strong>Come say hello</strong><span>12, Celebration Lane, New Delhi, India</span></div>
-          </div>
-          <div class="map">
-            <div>
-              <div class="map-pin">📍</div>
-              <strong>Confetti &amp; Co.</strong><br>
-              <small>New Delhi, India</small>
-            </div>
-          </div>
-        </div>
+function closePost() {
+  document.getElementById('blogPost').style.display = 'none';
+  document.getElementById('blogList').style.display = 'block';
+  window.scrollTo({top: 0, behavior: 'smooth'});
+}
 
-        <form class="form-card" id="contactForm">
-          <h2>Send a little message</h2>
-          <p>We’ll get back to you as soon as we can.</p>
-          <div class="field">
-            <label for="contactName">Your name</label>
-            <input id="contactName" required placeholder="e.g. Aanya Sharma">
-          </div>
-          <div class="field">
-            <label for="contactEmail">Email address</label>
-            <input id="contactEmail" type="email" required placeholder="you@example.com">
-          </div>
-          <div class="field">
-            <label for="contactMessage">Your message</label>
-            <textarea id="contactMessage" required placeholder="Tell us what you're celebrating..."></textarea>
-          </div>
-          <button class="btn" type="submit">Send Message&nbsp; →</button>
-        </form>
-      </div>
-    </div>
-  </section>
-</main>
+renderProducts();
+renderBlogs();
+renderCart();
+updateCount();
 
-<footer>
-  <div class="container footer-inner">
-    <div class="footer-brand">confetti &amp; co. 🎈</div>
-    <nav class="footer-links" aria-label="Footer">
-      <a href="#blog" data-page="blog">Blog</a>
-      <a href="#about" data-page="about">About</a>
-      <a href="#contact" data-page="contact">Contact</a>
-      <a href="mailto:pushkardhama1112@gmail.com">pushkardhama1112@gmail.com</a>
-    </nav>
-    <span>Made for moments that matter · © 2025 Confetti &amp; Co.</span>
-  </div>
-</footer>
-
-<button class="book-tab" onclick="openBooking()">Book Now</button>
-<div class="overlay" id="overlay" onclick="closeBooking()"></div>
-<aside class="booking-panel" id="bookingPanel" aria-label="Booking form">
-  <div class="panel-head">
-    <h2>Plan something lovely</h2>
-    <button class="close-btn" onclick="closeBooking()" aria-label="Close booking form">×</button>
-  </div>
-  <p class="panel-lead">Tell us a little about your celebration and we’ll help bring it to life.</p>
-
-  <form id="bookingForm">
-    <div class="field">
-      <label for="bookName">Your name *</label>
-      <input id="bookName" required placeholder="e.g. Aanya Sharma">
-    </div>
-    <div class="field">
-      <label for="bookMobile">Mobile number</label>
-      <input id="bookMobile" type="tel" placeholder="+91 98765 43210">
-    </div>
-    <p class="or-note">Add a mobile number or an email so we can reach you.</p>
-    <div class="field">
-      <label for="bookEmail">Email address</label>
-      <input id="bookEmail" type="email" placeholder="you@example.com">
-    </div>
-    <div class="field">
-      <label for="bookItem">What are you looking for?</label>
-      <select id="bookItem">
-        <option value="">Choose an item or category</option>
-      </select>
-    </div>
-    <button class="btn" type="submit">Send Booking Request&nbsp; →</button>
-  </form>
-
-  <div class="success" id="bookingSuccess">
-    <div class="emoji">🎉</div>
-    <h3>Thank you!</h3>
-    <p>We will contact you soon and help make your celebration extra special.</p>
-    <button class="btn" onclick="closeBooking()">Lovely, thanks!</button>
-  </div>
-</aside>
-<div class="toast" id="toast"></div>
+if (location.hash && ['home', 'products', 'blog', 'cart', 'about', 'contact'].includes(location.hash.slice(1))) {
+  navigate(location.hash.slice(1));
+}
