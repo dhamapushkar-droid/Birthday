@@ -1,1 +1,255 @@
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#fffaf7">
+<title>Birthday Decoration Items Online | Personalised Party Supplies India</title>
+<meta name="description" content= "Birthday decoration items online: personalised backdrops, welcome boards, cutouts, cake toppers, return gifts and theme kits. Free delivery above Rs. 899.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css"> 
+   </head>
+<body>
+<header class="topbar">
+  <nav class="nav">
+    <div class="brand" onclick="navigate('home')">
+      <div class="brand-mark">🎈</div>
+      <div class="brand-name">confetti <span>&amp;</span> co.</div>
+    </div>
+    <button class="menu-btn" id="menuBtn" aria-label="Toggle menu">☰</button>
+    <div class="navlinks" id="navlinks">
+      <a href="#home" data-page="home" class="active">Home</a>
+      <a href="#products" data-page="products">Products</a>
+      <a href="#blog" data-page="blog">Blog</a>
+      <a href="#cart" data-page="cart" class="cart-link">Cart <span class="badge" id="cartCount">0</span></a>
+    </div>
+  </nav>
+</header>
 
+<main>
+  <section class="page active" id="home">
+    <div class="container">
+      <div class="hero">
+        <div class="hero-card">
+          <div class="hero-copy">
+            <div class="eyebrow">Little details, big celebrations</div>
+            <h1>Make Every celebration special</h1>
+            <p>Thoughtful party decor and delightful gift hampers to make your happiest moments unforgettable.</p>
+            <button class="btn" onclick="navigate('products')">Shop Now&nbsp; →</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="section-head">
+        <div>
+          <h2>Find your party mood</h2>
+          <p>Everything you need to celebrate beautifully.</p>
+        </div>
+      </div>
+      <div class="categories">
+        <button class="category" onclick="filterAndGo('decorations')">
+          <span class="cat-icon" style="background:#fde7eb">🎈</span>
+          <span><strong>Balloon Decorations</strong><small>Make a little magic</small></span>
+        </button>
+        <button class="category" onclick="filterAndGo('decorations')">
+          <span class="cat-icon" style="background:#e9f4ec">🎊</span>
+          <span><strong>Theme Decor</strong><small>Set the scene</small></span>
+        </button>
+        <button class="category" onclick="filterAndGo('gift-hampers')">
+          <span class="cat-icon" style="background:#fff1d5">🎁</span>
+          <span><strong>Birthday Gift Hampers</strong><small>Gifts with extra joy</small></span>
+        </button>
+        <button class="category" onclick="filterAndGo('gift-hampers')">
+          <span class="cat-icon" style="background:#eee8f7">🧁</span>
+          <span><strong>Return Gifts</strong><small>Sweet little thank-yous</small></span>
+        </button>
+      </div>
+
+      <div class="section-head">
+        <div>
+          <h2>Party favourites</h2>
+          <p>Handpicked for your next unforgettable moment.</p>
+        </div>
+        <button class="text-link" onclick="navigate('products')">See all products →</button>
+      </div>
+      <div class="products-grid" id="featuredGrid"></div>
+
+      <div class="why">
+        <h2>Celebrations, made easy</h2>
+        <div class="why-item"><span>✨</span>Beautifully curated, always</div>
+        <div class="why-item"><span>💌</span>Personal touches you’ll love</div>
+        <div class="why-item"><span>🚚</span>Joy delivered to your door</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="page" id="products">
+    <div class="container">
+      <div class="page-heading">
+        <div class="eyebrow">The celebration shop</div>
+        <h1>Find your happy</h1>
+        <p>Little touches that turn a day into a memory.</p>
+      </div>
+      <div class="filter-row">
+        <button class="filter active" data-filter="all">All</button>
+        <button class="filter" data-filter="decorations">Decorations</button>
+        <button class="filter" data-filter="gift-hampers">Gift Hampers</button>
+      </div>
+      <div class="products-grid products-page-grid" id="productsGrid"></div>
+    </div>
+  </section>
+
+  <section class="page" id="cart">
+    <div class="container">
+      <div class="page-heading">
+        <div class="eyebrow">Your little celebration</div>
+        <h1>Your Cart</h1>
+        <p>All the lovely things you picked out.</p>
+      </div>
+      <div class="cart-layout">
+        <div class="cart-list" id="cartList"></div>
+        <aside class="cart-summary" id="cartSummary">
+          <h3>Order summary</h3>
+          <div class="summary-line"><span>Subtotal</span><span id="subtotal">₹0</span></div>
+          <div class="summary-line"><span>Delivery</span><span style="color:#55936a">Free</span></div>
+          <div class="summary-line summary-total"><span>Total</span><span id="total">₹0</span></div>
+          <button class="btn" onclick="openBooking('Your celebration order')">Proceed / Book Now&nbsp; →</button>
+        </aside>
+      </div>
+    </div>
+  </section>
+
+  <section class="page" id="blog">
+    <div class="container">
+      <div id="blogList">
+        <div class="page-heading">
+          <div class="eyebrow">The celebration journal</div>
+          <h1>Ideas &amp; inspiration</h1>
+          <p>Party decor tips, gifting ideas and little details for your happiest days.</p>
+        </div>
+        <div class="blog-grid" id="blogGrid"></div>
+      </div>
+      <article class="post" id="blogPost" style="display:none"></article>
+    </div>
+  </section>
+
+  <section class="page" id="about">
+    <div class="container">
+      <div class="page-heading">
+        <div class="eyebrow">A little about us</div>
+        <h1>Celebrations made special</h1>
+        <p>Confetti &amp; Co. brings thoughtful party decor and delightful gift hampers to your happiest moments.</p>
+      </div>
+      <div class="why">
+        <h2>Little details, big memories</h2>
+        <div class="why-item"><span>Party decor</span>Joyful decorations for every celebration</div>
+        <div class="why-item"><span>Gift hampers</span>Thoughtful gifts, beautifully chosen</div>
+        <div class="why-item"><span>Personal</span>Personal touches you will love</div>
+      </div>
+    </div>
+  </section>
+
+  <section class="page" id="contact">
+    <div class="container">
+      <div class="page-heading">
+        <div class="eyebrow">We’re here for the happy stuff</div>
+        <h1>Let’s make it special</h1>
+        <p>Questions, custom ideas, or just want to say hello? We’d love to hear from you.</p>
+      </div>
+      <div class="contact-grid">
+        <div class="contact-cards">
+          <div class="contact-card">
+            <div class="contact-icon">📞</div>
+            <div><strong>Give us a ring</strong><span>+91 98765 43210</span></div>
+          </div>
+          <div class="contact-card">
+            <div class="contact-icon">✉️</div>
+            <div><strong>Drop us a note</strong><span>hello@confettiandco.in</span></div>
+          </div>
+          <div class="contact-card">
+            <div class="contact-icon">📍</div>
+            <div><strong>Come say hello</strong><span>12, Celebration Lane, New Delhi, India</span></div>
+          </div>
+          <div class="map">
+            <div>
+              <div class="map-pin">📍</div>
+              <strong>Confetti &amp; Co.</strong><br>
+              <small>New Delhi, India</small>
+            </div>
+          </div>
+        </div>
+
+        <form class="form-card" id="contactForm">
+          <h2>Send a little message</h2>
+          <p>We’ll get back to you as soon as we can.</p>
+          <div class="field">
+            <label for="contactName">Your name</label>
+            <input id="contactName" required placeholder="e.g. Aanya Sharma">
+          </div>
+          <div class="field">
+            <label for="contactEmail">Email address</label>
+            <input id="contactEmail" type="email" required placeholder="you@example.com">
+          </div>
+          <div class="field">
+            <label for="contactMessage">Your message</label>
+            <textarea id="contactMessage" required placeholder="Tell us what you're celebrating..."></textarea>
+          </div>
+          <button class="btn" type="submit">Send Message&nbsp; →</button>
+        </form>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="container footer-inner">
+    <div class="footer-brand">confetti &amp; co. 🎈</div>
+    <nav class="footer-links" aria-label="Footer">
+      <a href="#blog" data-page="blog">Blog</a>
+      <a href="#about" data-page="about">About</a>
+      <a href="#contact" data-page="contact">Contact</a>
+      <a href="mailto:pushkardhama1112@gmail.com">pushkardhama1112@gmail.com</a>
+    </nav>
+    <span>Made for moments that matter · © 2025 Confetti &amp; Co.</span>
+  </div>
+</footer>
+
+<button class="book-tab" onclick="openBooking()">Book Now</button>
+<div class="overlay" id="overlay" onclick="closeBooking()"></div>
+<aside class="booking-panel" id="bookingPanel" aria-label="Booking form">
+  <div class="panel-head">
+    <h2>Plan something lovely</h2>
+    <button class="close-btn" onclick="closeBooking()" aria-label="Close booking form">×</button>
+  </div>
+  <p class="panel-lead">Tell us a little about your celebration and we’ll help bring it to life.</p>
+
+  <form id="bookingForm">
+    <div class="field">
+      <label for="bookName">Your name *</label>
+      <input id="bookName" required placeholder="e.g. Aanya Sharma">
+    </div>
+    <div class="field">
+      <label for="bookMobile">Mobile number</label>
+      <input id="bookMobile" type="tel" placeholder="+91 98765 43210">
+    </div>
+    <p class="or-note">Add a mobile number or an email so we can reach you.</p>
+    <div class="field">
+      <label for="bookEmail">Email address</label>
+      <input id="bookEmail" type="email" placeholder="you@example.com">
+    </div>
+    <div class="field">
+      <label for="bookItem">What are you looking for?</label>
+      <select id="bookItem">
+        <option value="">Choose an item or category</option>
+      </select>
+    </div>
+    <button class="btn" type="submit">Send Booking Request&nbsp; →</button>
+  </form>
+
+  <div class="success" id="bookingSuccess">
+    <div class="emoji">🎉</div>
+    <h3>Thank you!</h3>
+    <p>We will contact you soon and help make your celebration extra special.</p>
+    <button class="btn" onclick="closeBooking()">Lovely, thanks!</button>
+  </div>
+</aside>
+<div class="toast" id="toast"></div>
