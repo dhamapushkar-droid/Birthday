@@ -11,27 +11,111 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="theme-color" content="#fffaf7">
-<title>Birthday Decoration Items Online | Personalised Party Supplies India</title>
-<meta name="description" content= "Birthday decoration items online: personalised backdrops, welcome boards, cutouts, cake toppers, return gifts and theme kits. Free delivery above Rs. 899.">
+<title>PartyNest | Party Decoration Items &amp; Balloons in Delhi NCR</title>
+<meta name="description" content="PartyNest sells balloons, party poppers and custom name décor with delivery across Delhi NCR. Free delivery above Rs. 899. Call 7456924387.">
+<link rel="canonical" href="https://partynest.github.io/">
+<meta property="og:title" content="PartyNest | Party Decoration Items &amp; Balloons in Delhi NCR">
+<meta property="og:description" content="Balloons, party poppers and custom name décor delivered across Delhi NCR.">
+<meta property="og:url" content="https://partynest.github.io/">
+<meta property="og:type" content="website">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@600;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/style.css"> 
-   <link rel="canonical" href="https://partynest.github.io/">
-   </head>
+<link rel="stylesheet" href="css/style.css">
+
+<style>
+  /* Small fixes so links look like the old buttons */
+  a.btn, a.category, a.book-tab, a.brand { text-decoration: none; }
+  a.category, a.brand { color: inherit; }
+  .navlinks.show {
+    display: flex !important;
+    flex-direction: column;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background: #fffaf7;
+    padding: 16px 24px;
+    gap: 14px;
+    border-bottom: 1px solid #f0dfe6;
+    z-index: 20;
+  }
+  .text-block { max-width: 760px; margin: 0 0 28px; line-height: 1.75; }
+  .text-block p { margin: 0 0 14px; }
+  .faq details { background: #fff; border: 1px solid #f0dfe6; border-radius: 14px; padding: 14px 18px; margin-bottom: 10px; }
+  .faq summary { cursor: pointer; font-weight: 700; }
+  .faq details p { margin: 10px 0 0; line-height: 1.7; }
+  .area-list { display: flex; flex-wrap: wrap; gap: 10px; margin: 12px 0 0; padding: 0; list-style: none; }
+  .area-list li { background: #fde7eb; border-radius: 999px; padding: 8px 18px; font-weight: 600; }
+  .order-steps { padding-left: 20px; line-height: 1.8; }
+  .btn-row { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 14px; }
+</style>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Store",
+  "name": "PartyNest",
+  "url": "https://partynest.github.io/",
+  "telephone": "+91-7456924387",
+  "email": "dhamapushkar@gmail.com",
+  "areaServed": ["Delhi", "Noida", "Gurgaon", "Ghaziabad", "Faridabad"],
+  "description": "Party decoration items, balloons, party poppers and custom name décor in Delhi NCR."
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {
+      "@type": "Question",
+      "name": "Which areas does PartyNest deliver to?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "We deliver across Delhi NCR: Delhi, Noida, Gurgaon, Ghaziabad and Faridabad. We do not deliver outside Delhi NCR at the moment."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Can I get party decoration with a name on it?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Yes. Custom name items are our speciality. Tell us the name and theme and we will make it for you."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "How can I place an order?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Call us on 7456924387 or email dhamapushkar@gmail.com with what you need and your delivery area in Delhi NCR."
+      }
+    },
+    {
+      "@type": "Question",
+      "name": "Is delivery free?",
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": "Delivery is free on orders above Rs. 899."
+      }
+    }
+  ]
+}
+</script>
+</head>
 <body>
 <header class="topbar">
   <nav class="nav">
-    <div class="brand" onclick="navigate('home')">
+    <a class="brand" href="/">
       <div class="brand-mark">🎈</div>
-     <div class="brand-name">PartyNest</div>
-    </div>
+      <div class="brand-name">PartyNest</div>
+    </a>
     <button class="menu-btn" id="menuBtn" aria-label="Toggle menu">☰</button>
     <div class="navlinks" id="navlinks">
-      <a href="#home" data-page="home" class="active">Home</a>
-      <a href="#products" data-page="products">Products</a>
-      <a href="#blog" data-page="blog">Blog</a>
-      <a href="#cart" data-page="cart" class="cart-link">Cart <span class="badge" id="cartCount">0</span></a>
+      <a href="/" class="active">Home</a>
+      <a href="/birthday-decor/">Birthday Decor</a>
+      <a href="#contact">Contact</a>
     </div>
   </nav>
 </header>
@@ -39,173 +123,135 @@
 <main>
   <section class="page active" id="home">
     <div class="container">
+
       <div class="hero">
         <div class="hero-card">
           <div class="hero-copy">
-            <div class="eyebrow">Little details, big celebrations</div>
-            <h1>Make Every celebration special</h1>
-            <p>Thoughtful party decor and delightful gift hampers to make your happiest moments unforgettable.</p>
-            <button class="btn" onclick="navigate('products')">Shop Now&nbsp; →</button>
+            <div class="eyebrow">Party decor in Delhi NCR</div>
+            <h1>Party &amp; Birthday Decoration Items in Delhi NCR</h1>
+            <p>Balloons, party poppers and custom name décor for your happiest moments. Free delivery on orders above Rs. 899.</p>
+            <a class="btn" href="/birthday-decor/">Explore Birthday Decor&nbsp; →</a>
           </div>
         </div>
       </div>
 
       <div class="section-head">
         <div>
-          <h2>Find your party mood</h2>
-          <p>Everything you need to celebrate beautifully.</p>
+          <h2>What we sell</h2>
+          <p>Simple party essentials, with a personal touch.</p>
         </div>
       </div>
       <div class="categories">
-        <button class="category" onclick="filterAndGo('decorations')">
+        <a class="category" href="/birthday-decor/">
           <span class="cat-icon" style="background:#fde7eb">🎈</span>
-          <span><strong>Balloon Decorations</strong><small>Make a little magic</small></span>
-        </button>
-        <button class="category" onclick="filterAndGo('decorations')">
-          <span class="cat-icon" style="background:#e9f4ec">🎊</span>
-          <span><strong>Theme Decor</strong><small>Set the scene</small></span>
-        </button>
-        <button class="category" onclick="filterAndGo('gift-hampers')">
-          <span class="cat-icon" style="background:#fff1d5">🎁</span>
-          <span><strong>Birthday Gift Hampers</strong><small>Gifts with extra joy</small></span>
-        </button>
-        <button class="category" onclick="filterAndGo('gift-hampers')">
-          <span class="cat-icon" style="background:#eee8f7">🧁</span>
-          <span><strong>Return Gifts</strong><small>Sweet little thank-yous</small></span>
-        </button>
+          <span><strong>Happy Birthday Balloons</strong><small>Colourful balloons for every party</small></span>
+        </a>
+        <a class="category" href="/birthday-decor/">
+          <span class="cat-icon" style="background:#fff1d5">🎉</span>
+          <span><strong>Party Poppers</strong><small>For the big cake-cutting moment</small></span>
+        </a>
+        <a class="category" href="/birthday-decor/">
+          <span class="cat-icon" style="background:#eee8f7">✨</span>
+          <span><strong>Custom Name Items</strong><small>Made with your name or theme</small></span>
+        </a>
       </div>
 
       <div class="section-head">
         <div>
-          <h2>Party favourites</h2>
-          <p>Handpicked for your next unforgettable moment.</p>
+          <h2>About PartyNest</h2>
+          <p>Party decoration for families across Delhi NCR.</p>
         </div>
-        <button class="text-link" onclick="navigate('products')">See all products →</button>
       </div>
-      <div class="products-grid" id="featuredGrid"></div>
+      <div class="text-block">
+        <p>PartyNest is a party decoration shop serving families in Delhi NCR. We sell the things that make a birthday look and feel special: happy birthday balloons, party poppers and custom name décor made for your celebration.</p>
+        <p>Planning a party often means running between shops for small things. With PartyNest you pick your decoration items in one place and get them delivered to your door in Delhi, Noida, Gurgaon, Ghaziabad or Faridabad. Delivery is free on orders above Rs. 899.</p>
+        <p>What makes us different is personalisation. Tell us the name, the age and the theme you like, and we will make custom name items for your party. A banner or décor piece with the birthday child's own name on it makes the room feel planned and gives you better photos to remember the day.</p>
+        <p>Looking for birthday ideas? See our <a href="/birthday-decor/">birthday decoration items page</a> for what we offer and simple tips to decorate your party at home.</p>
+      </div>
 
       <div class="why">
-        <h2>Celebrations, made easy</h2>
-        <div class="why-item"><span>✨</span>Beautifully curated, always</div>
-        <div class="why-item"><span>💌</span>Personal touches you’ll love</div>
-        <div class="why-item"><span>🚚</span>Joy delivered to your door</div>
+        <h2>Why PartyNest</h2>
+        <div class="why-item"><span>✨</span>Custom name items, made for your party</div>
+        <div class="why-item"><span>🚚</span>Delivery across Delhi NCR, free above Rs. 899</div>
+        <div class="why-item"><span>📞</span>Order easily by phone or email</div>
       </div>
-    </div>
-  </section>
 
-  <section class="page" id="products">
-    <div class="container">
-      <div class="page-heading">
-        <div class="eyebrow">The celebration shop</div>
-        <h1>Find your happy</h1>
-        <p>Little touches that turn a day into a memory.</p>
-      </div>
-      <div class="filter-row">
-        <button class="filter active" data-filter="all">All</button>
-        <button class="filter" data-filter="decorations">Decorations</button>
-        <button class="filter" data-filter="gift-hampers">Gift Hampers</button>
-      </div>
-      <div class="products-grid products-page-grid" id="productsGrid"></div>
-    </div>
-  </section>
-
-  <section class="page" id="cart">
-    <div class="container">
-      <div class="page-heading">
-        <div class="eyebrow">Your little celebration</div>
-        <h1>Your Cart</h1>
-        <p>All the lovely things you picked out.</p>
-      </div>
-      <div class="cart-layout">
-        <div class="cart-list" id="cartList"></div>
-        <aside class="cart-summary" id="cartSummary">
-          <h3>Order summary</h3>
-          <div class="summary-line"><span>Subtotal</span><span id="subtotal">₹0</span></div>
-          <div class="summary-line"><span>Delivery</span><span style="color:#55936a">Free</span></div>
-          <div class="summary-line summary-total"><span>Total</span><span id="total">₹0</span></div>
-          <button class="btn" onclick="openBooking('Your celebration order')">Proceed / Book Now&nbsp; →</button>
-        </aside>
-      </div>
-    </div>
-  </section>
-
-  <section class="page" id="blog">
-    <div class="container">
-      <div id="blogList">
-        <div class="page-heading">
-          <div class="eyebrow">The celebration journal</div>
-          <h1>Ideas &amp; inspiration</h1>
-          <p>Party decor tips, gifting ideas and little details for your happiest days.</p>
+      <div class="section-head">
+        <div>
+          <h2>We deliver across Delhi NCR</h2>
+          <p>Birthday and party decoration items delivered to these areas.</p>
         </div>
-        <div class="blog-grid" id="blogGrid"></div>
       </div>
-      <article class="post" id="blogPost" style="display:none"></article>
+      <ul class="area-list">
+        <li>Delhi</li>
+        <li>Noida</li>
+        <li>Gurgaon</li>
+        <li>Ghaziabad</li>
+        <li>Faridabad</li>
+      </ul>
+
+      <div class="section-head" style="margin-top:40px">
+        <div>
+          <h2>Frequently asked questions</h2>
+        </div>
+      </div>
+      <div class="faq">
+        <details>
+          <summary>Which areas does PartyNest deliver to?</summary>
+          <p>We deliver across Delhi NCR: Delhi, Noida, Gurgaon, Ghaziabad and Faridabad. We do not deliver outside Delhi NCR at the moment.</p>
+        </details>
+        <details>
+          <summary>Can I get party decoration with a name on it?</summary>
+          <p>Yes. Custom name items are our speciality. Tell us the name and theme and we will make it for you.</p>
+        </details>
+        <details>
+          <summary>How can I place an order?</summary>
+          <p>Call us on 7456924387 or email dhamapushkar@gmail.com with what you need and your delivery area in Delhi NCR.</p>
+        </details>
+        <details>
+          <summary>Is delivery free?</summary>
+          <p>Delivery is free on orders above Rs. 899.</p>
+        </details>
+      </div>
+
     </div>
   </section>
 
-  <section class="page" id="about">
-    <div class="container">
-      <div class="page-heading">
-        <div class="eyebrow">A little about us</div>
-        <h1>Celebrations made special</h1>
-        <p>PartyNest &amp;  brings thoughtful party decor and delightful gift hampers to your happiest moments.</p>
-      </div>
-      <div class="why">
-        <h2>Little details, big memories</h2>
-        <div class="why-item"><span>Party decor</span>Joyful decorations for every celebration</div>
-        <div class="why-item"><span>Gift hampers</span>Thoughtful gifts, beautifully chosen</div>
-        <div class="why-item"><span>Personal</span>Personal touches you will love</div>
-      </div>
-    </div>
-  </section>
-
-  <section class="page" id="contact">
+  <section class="page active" id="contact">
     <div class="container">
       <div class="page-heading">
         <div class="eyebrow">We’re here for the happy stuff</div>
         <h1>Let’s make it special</h1>
-        <p>Questions, custom ideas, or just want to say hello? We’d love to hear from you.</p>
+        <p>Questions, custom name ideas, or ready to order? Call or email us.</p>
       </div>
       <div class="contact-grid">
         <div class="contact-cards">
           <div class="contact-card">
             <div class="contact-icon">📞</div>
-            <div><strong>Give us a ring</strong><span>+91 98765 43210</span></div>
+            <div><strong>Give us a ring</strong><span><a href="tel:+917456924387">7456924387</a></span></div>
           </div>
           <div class="contact-card">
             <div class="contact-icon">✉️</div>
-            <div><strong>Drop us a note</strong><span>hello@PartyNest.in</span></div>
+            <div><strong>Drop us a note</strong><span><a href="mailto:dhamapushkar@gmail.com">dhamapushkar@gmail.com</a></span></div>
           </div>
           <div class="contact-card">
             <div class="contact-icon">📍</div>
-            <div><strong>Come say hello</strong><span>12, Celebration Lane, New Delhi, India</span></div>
-          </div>
-          <div class="map">
-            <div>
-              <div class="map-pin">📍</div>
-              <strong>PartyNest &amp; Co.</strong><br>
-              <small>New Delhi, India</small>
-            </div>
+            <div><strong>We deliver in</strong><span>Delhi NCR</span></div>
           </div>
         </div>
 
-        <form class="form-card" id="contactForm">
-          <h2>Send a little message</h2>
-          <p>We’ll get back to you as soon as we can.</p>
-          <div class="field">
-            <label for="contactName">Your name</label>
-            <input id="contactName" required placeholder="e.g. Aanya Sharma">
+        <div class="form-card">
+          <h2>How to order</h2>
+          <ol class="order-steps">
+            <li>Tell us what you need, or share the name and theme for custom items.</li>
+            <li>Send us your delivery area in Delhi NCR.</li>
+            <li>We confirm the details and deliver to your door.</li>
+          </ol>
+          <div class="btn-row">
+            <a class="btn" href="tel:+917456924387">Call 7456924387</a>
+            <a class="btn" href="mailto:dhamapushkar@gmail.com">Email us</a>
           </div>
-          <div class="field">
-            <label for="contactEmail">Email address</label>
-            <input id="contactEmail" type="email" required placeholder="you@example.com">
-          </div>
-          <div class="field">
-            <label for="contactMessage">Your message</label>
-            <textarea id="contactMessage" required placeholder="Tell us what you're celebrating..."></textarea>
-          </div>
-          <button class="btn" type="submit">Send Message&nbsp; →</button>
-        </form>
+        </div>
       </div>
     </div>
   </section>
@@ -213,58 +259,26 @@
 
 <footer>
   <div class="container footer-inner">
-    <div class="footer-brand">PartyNest &amp; co. 🎈</div>
+    <div class="footer-brand">PartyNest 🎈</div>
     <nav class="footer-links" aria-label="Footer">
-      <a href="#blog" data-page="blog">Blog</a>
-      <a href="#about" data-page="about">About</a>
-      <a href="#contact" data-page="contact">Contact</a>
-      <a href="mailto:pushkardhama1112@gmail.com">pushkardhama1112@gmail.com</a>
+      <a href="/">Home</a>
+      <a href="/birthday-decor/">Birthday Decor</a>
+      <a href="#contact">Contact</a>
+      <a href="mailto:dhamapushkar@gmail.com">dhamapushkar@gmail.com</a>
     </nav>
-    <span>Made for moments that matter · © 2025 PartyNest &amp; Co.</span>
+    <span>Party decoration in Delhi NCR · © 2026 PartyNest</span>
   </div>
 </footer>
 
-<button class="book-tab" onclick="openBooking()">Book Now</button>
-<div class="overlay" id="overlay" onclick="closeBooking()"></div>
-<aside class="booking-panel" id="bookingPanel" aria-label="Booking form">
-  <div class="panel-head">
-    <h2>Plan something lovely</h2>
-    <button class="close-btn" onclick="closeBooking()" aria-label="Close booking form">×</button>
-  </div>
-  <p class="panel-lead">Tell us a little about your celebration and we’ll help bring it to life.</p>
+<a class="book-tab" href="tel:+917456924387">Call Now</a>
 
-  <form id="bookingForm">
-    <div class="field">
-      <label for="bookName">Your name *</label>
-      <input id="bookName" required placeholder="e.g. Aanya Sharma">
-    </div>
-    <div class="field">
-      <label for="bookMobile">Mobile number</label>
-      <input id="bookMobile" type="tel" placeholder="+91 98765 43210">
-    </div>
-    <p class="or-note">Add a mobile number or an email so we can reach you.</p>
-    <div class="field">
-      <label for="bookEmail">Email address</label>
-      <input id="bookEmail" type="email" placeholder="you@example.com">
-    </div>
-    <div class="field">
-      <label for="bookItem">What are you looking for?</label>
-      <select id="bookItem">
-        <option value="">Choose an item or category</option>
-      </select>
-    </div>
-    <button class="btn" type="submit">Send Booking Request&nbsp; →</button>
-  </form>
-
-  <div class="success" id="bookingSuccess">
-    <div class="emoji">🎉</div>
-    <h3>Thank you!</h3>
-    <p>We will contact you soon and help make your celebration extra special.</p>
-    <button class="btn" onclick="closeBooking()">Lovely, thanks!</button>
-  </div>
-</aside>
-<div class="toast" id="toast"></div>
-
-  <script src="js/script.js"></script>
+<script>
+  var menuBtn = document.getElementById('menuBtn');
+  var navlinks = document.getElementById('navlinks');
+  if (menuBtn && navlinks) {
+    menuBtn.addEventListener('click', function () { navlinks.classList.toggle('show'); });
+    navlinks.addEventListener('click', function () { navlinks.classList.remove('show'); });
+  }
+</script>
 </body>
 </html>
