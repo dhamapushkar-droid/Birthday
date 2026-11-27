@@ -141,7 +141,7 @@
   <h2>Looking for a birthday gift?</h2>
   <p>Tell us your budget and delivery date.</p>
   <div class="btn-row">
-    <a class="btn" href="/#contact">Contact us</a>
+    <a class="btn" href="/#contact" data-open-form>Contact us</a>
   </div>
 </div>
 
@@ -173,7 +173,7 @@
   </div>
 </footer>
 
-<a class="book-tab" href="/#contact">Contact Us</a>
+<button class="book-tab" type="button" data-open-form>Contact Us</button>
 
 <script>
   var menuBtn = document.getElementById('menuBtn');
@@ -183,5 +183,6 @@
     navlinks.addEventListener('click', function () { navlinks.classList.remove('show'); });
   }
 </script>
+<script src="/js/contact-form.js" defer></script>
 </body>
 </html>

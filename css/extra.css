@@ -33,3 +33,25 @@ div.category { cursor: default; }
 .page-heading .btn-row { justify-content: center; }
 .cta-box { background: #fde7eb; border-radius: 22px; padding: 28px; text-align: center; margin: 20px 0 10px; }
 .cta-box .btn-row { justify-content: center; }
+
+/* ---- Enquiry form (slides in from the right) ---- */
+.pn-overlay { position: fixed; inset: 0; background: rgba(43,34,48,.45); opacity: 0; visibility: hidden; transition: opacity .25s ease, visibility 0s .25s; z-index: 998; }
+.pn-overlay.open { opacity: 1; visibility: visible; transition: opacity .25s ease; }
+.pn-panel { position: fixed; top: 0; right: 0; height: 100%; width: min(440px, 100%); background: #fffaf7; z-index: 999; transform: translateX(100%); visibility: hidden; transition: transform .3s ease, visibility 0s .3s; overflow-y: auto; padding: 26px 24px 36px; box-shadow: -8px 0 30px rgba(0,0,0,.15); }
+.pn-panel.open { transform: none; visibility: visible; transition: transform .3s ease; }
+.pn-head { display: flex; align-items: center; justify-content: space-between; gap: 12px; margin-bottom: 6px; }
+.pn-head h2 { margin: 0; font-size: 26px; }
+.pn-close { background: none; border: 0; font-size: 32px; line-height: 1; cursor: pointer; color: inherit; padding: 4px 8px; }
+.pn-lead { margin: 0 0 20px; opacity: .75; }
+.pn-field { margin-bottom: 14px; }
+.pn-field label { display: block; font-weight: 600; font-size: 14px; margin-bottom: 6px; }
+.pn-field input, .pn-field select, .pn-field textarea { width: 100%; padding: 12px 14px; border: 1px solid #ecd9e0; border-radius: 12px; font: inherit; background: #fff; color: inherit; }
+.pn-field textarea { min-height: 92px; resize: vertical; }
+.pn-field input:focus, .pn-field select:focus, .pn-field textarea:focus { outline: 2px solid #d9829a; outline-offset: 1px; }
+.pn-hp { position: absolute; left: -9999px; opacity: 0; width: 1px; height: 1px; }
+.pn-error { background: #fde7eb; color: #8a2342; border-radius: 10px; padding: 10px 14px; margin: 0 0 14px; font-size: 14px; }
+.pn-submit { width: 100%; justify-content: center; border: 0; cursor: pointer; }
+.pn-submit:disabled { opacity: .7; cursor: default; }
+.pn-success { text-align: center; padding: 30px 6px; }
+.pn-success[hidden], .pn-error[hidden], #pnForm[hidden] { display: none; }
+.pn-emoji { font-size: 48px; }
