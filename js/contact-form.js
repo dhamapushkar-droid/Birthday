@@ -180,6 +180,10 @@
         .then(function (res) { return res.json(); })
         .then(function (json) {
           if (json && json.success) {
+            try {
+              window.dataLayer = window.dataLayer || [];
+              window.dataLayer.push({ event: "enquiry_submitted", enquiry_type: need, delivery_area: area });
+            } catch (e) {}
             form.hidden = true;
             success.hidden = false;
           } else {
